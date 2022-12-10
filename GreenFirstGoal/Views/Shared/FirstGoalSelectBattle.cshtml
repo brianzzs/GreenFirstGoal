@@ -1,0 +1,60 @@
+﻿@model GreenFirstGoal.Models.SelectViewModel
+@{
+    ViewData["Title"] = "First Goals";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+
+<form asp-asp-controller="FirstGoal" asp-action="FirstGoalBattle" method="post">
+    <div class="row firstGoal">
+        <label for="firstGoalPlayer">Escolha o Jogador</label>
+        <select id="player1Select" data-live-search="true" class="selectpicker" asp-items="Model.PlayersList" asp-for="Player" onchange="makeGetRequest()"></select>
+    </div>
+    <br />
+    <div class="row firstGoal">
+        <label for="firstGoalPlayer">Escolha o Jogador</label>
+        <select id="player2" class="selectpicker" asp-items="Model.PlayersList" asp-for="Player2" data-live-search="true"></select>
+        @*<select id="player2" class="selectpicker" asp-items="Model.PlayersList" asp-for="Player2" data-live-search="true"></select>*@
+
+
+        <div class="firstgoalChild">
+            <button class="btn btn-primary" type="submit">Buscar!</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    var selectPlayer2 = document.getElementById("player2");
+    function makeGetRequest() {
+        var selectedValue = document.getElementById("player1Select").value;
+        fetch("/FirstGoal/GetData?player=" + selectedValue)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                //for (let i = 0; i < data.vmPlayers.length; i++) {
+                //    console.log(data.vmPlayers[i]);
+                //    let option = document.createElement("option");
+                //    option.value = data.vmPlayers[i];
+                //    option.text = data.vmPlayers[i];
+                //    selectPlayer2.appendChild(option);
+                //}
+                //let select1 = document.getElementById("player1Select");
+                //let option = select1.value;
+
+                //// Get all option elements
+                //let options = select1.options;
+
+                //// Loop through the options
+                //for (let i = 0; i < options.length; i++) {
+                //    if (data.vmPlayers.includes(options[i].innerHTML)) {
+                //    } else {
+                //        options[i].disabled = true;
+                //    }
+                //}
+            });
+    }
+</script>
+
+
+

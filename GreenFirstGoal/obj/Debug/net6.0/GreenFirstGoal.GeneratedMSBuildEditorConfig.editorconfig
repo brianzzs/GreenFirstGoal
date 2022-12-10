@@ -1,0 +1,57 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GreenFirstGoal
+build_property.RootNamespace = GreenFirstGoal
+build_property.ProjectDir = C:\Users\brian\source\repos\GreenFirstGoal\GreenFirstGoal\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\brian\source\repos\GreenFirstGoal\GreenFirstGoal
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/FirstGoalBattle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZpcnN0R29hbEJhdHRsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/FirstGoalGTLeague.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZpcnN0R29hbEdUTGVhZ3VlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/FirstGoalSelectBattle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZpcnN0R29hbFNlbGVjdEJhdHRsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/FirstGoalSelectGTLeague.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZpcnN0R29hbFNlbGVjdEdUTGVhZ3VlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/brian/source/repos/GreenFirstGoal/GreenFirstGoal/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-gsoaimhuq9

@@ -1,0 +1,75 @@
+﻿@using GreenFirstGoal.Models.Battle;
+@model IEnumerable<MatchViewModel>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            @*            <th>
+            @Html.DisplayNameFor(model => model.Date)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.HomePlayerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeTeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayScore)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AwayTeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AwayPlayerName)
+            </th>
+            @*            <th>
+            @Html.DisplayNameFor(model => model.TotalGoals)
+            </th>*@
+            @*            <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Date)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomePlayerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeTeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HomeScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayTeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AwayPlayerName)
+                </td>
+                @*            <td>
+            @Html.DisplayFor(modelItem => item.TotalGoals)
+            </td>*@
+                @*            <td>
+            <a asp-action="Edit" asp-route-id="@item.GameID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.GameID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.GameID">Delete</a>
+            </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

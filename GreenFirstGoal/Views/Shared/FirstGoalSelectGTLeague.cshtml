@@ -1,0 +1,26 @@
+﻿@model GreenFirstGoal.Models.SelectViewModel
+@{
+    ViewData["Title"] = "First Goal GT League";
+    var styleScore1 = "";
+    var styleScore2 = "";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form asp-asp-controller="FirstGoalGTLeague" asp-action="FirstGoalGTLeague" method="post">
+    <div class="row firstGoal">
+        <label for="firstGoalPlayer">Escolha o Jogador</label>
+        <select data-live-search="true" class="selectpicker" asp-items="Model.PlayersList" asp-for="Player"></select>
+    </div>
+    <br />
+    <div class="row firstGoal">
+        <label for="firstGoalPlayer">Escolha o Jogador</label>
+        <select class="selectpicker" asp-items="Model.PlayersList" asp-for="Player2" data-live-search="true"></select>
+
+
+        <div class="firstgoalChild">
+            <button class="btn btn-primary" type="submit">Buscar!</button>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,87 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #3A3E59 !important;
+}
+
+#navTOP {
+    color: white !important;
+}
+
+.table {
+    text-align: center;
+    color: white !important;
+}
+
+    .table th {
+        text-align: center;
+    }
+
+h1 {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 10%;
+    color: white !important;
+}
+
+.firstGoal {
+    display: flex;
+    color: white;
+}
+
+.firstGoal-child {
+    flex: 1;
+    margin: 5px;
+    display: flex;
+    justify-content: right;
+}
+
+    .firstGoal-child p {
+        margin-left: 30px;
+        font-size: 30px;
+        color: white !important;
+    }
+
+.versusDiv {
+    justify-content: center;
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-right: 3%;
+    color: white;
+}
+
+.firstGoal-child2 {
+    flex: 1;
+    margin: 5px;
+    display: flex;
+    justify-content: left;
+    color: white;
+}
+
+    .firstGoal-child2 p {
+        margin-right: 30px;
+        font-size: 30px;
+        color:white !important;
+    }
+#player1Select {
+    color: black;
+}
+
+#player2
+{
+    color:black;
+}

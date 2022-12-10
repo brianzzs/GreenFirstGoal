@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenFirstGoal", "GreenFirstGoal\GreenFirstGoal.csproj", "{53ACC7FB-8C96-45EA-9F6A-1C355A6DB4A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53ACC7FB-8C96-45EA-9F6A-1C355A6DB4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53ACC7FB-8C96-45EA-9F6A-1C355A6DB4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53ACC7FB-8C96-45EA-9F6A-1C355A6DB4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53ACC7FB-8C96-45EA-9F6A-1C355A6DB4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A294BC5-A8BB-4D04-A69F-D2FB75CC4E18}
+	EndGlobalSection
+EndGlobal
