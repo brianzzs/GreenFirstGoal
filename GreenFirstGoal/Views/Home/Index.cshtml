@@ -33,7 +33,6 @@
             @*            <th>
             @Html.DisplayNameFor(model => model.TotalGoals)
             </th>*@
-            @*            <th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -44,7 +43,7 @@
             @Html.DisplayFor(modelItem => item.Date)
             </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.HomePlayerName)
+                    @item.HomePlayerName
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.HomeTeamName)
@@ -61,14 +60,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AwayPlayerName)
                 </td>
-                @*            <td>
-            @Html.DisplayFor(modelItem => item.TotalGoals)
-            </td>*@
-                @*            <td>
-            <a asp-action="Edit" asp-route-id="@item.GameID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.GameID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.GameID">Delete</a>
-            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalGoals)
+                </td>
             </tr>
         }
     </tbody>

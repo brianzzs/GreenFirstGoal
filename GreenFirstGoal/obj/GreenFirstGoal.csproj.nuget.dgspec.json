@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\brian\\source\\repos\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj": {}
+    "C:\\Users\\Enrique\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\brian\\source\\repos\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj": {
+    "C:\\Users\\Enrique\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\brian\\source\\repos\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj",
+        "projectUniqueName": "C:\\Users\\Enrique\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj",
         "projectName": "GreenFirstGoal",
-        "projectPath": "C:\\Users\\brian\\source\\repos\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj",
-        "packagesPath": "C:\\Users\\brian\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\brian\\source\\repos\\GreenFirstGoal\\GreenFirstGoal\\obj\\",
+        "projectPath": "C:\\Users\\Enrique\\GreenFirstGoal\\GreenFirstGoal\\GreenFirstGoal.csproj",
+        "packagesPath": "C:\\Users\\Enrique\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Enrique\\GreenFirstGoal\\GreenFirstGoal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\brian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Enrique\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
