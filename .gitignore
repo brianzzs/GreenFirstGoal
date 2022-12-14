@@ -1,0 +1,27 @@
+﻿
+################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/GreenFirstGoal/DesignTimeBuild/.dtbcache.v2
+/.vs/GreenFirstGoal/FileContentIndex/bbc7bc01-1481-465f-bb2c-abc7da4a24cb.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/ba87c1dc-964e-4b4d-a45e-1de5764c8755.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/88897722-2fae-4e0f-9311-f17627423da4.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/5bb9439d-a693-49d2-9144-1e1ab9ac134d.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/55aae48c-8da5-479e-9f3a-afc4dd05d4b8.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/5356ec3e-ddd9-4ebc-ba0b-97a05f885c37.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/4f04a2b3-8ff0-44bc-b9de-2bc333d96bb5.vsidx
+/.vs/GreenFirstGoal/FileContentIndex/3a0dc03b-1d20-4ed0-9e68-bc2d9910dad5.vsidx
+.vs/
+/.vs/GreenFirstGoal/v17/.suo
+/.vs/GreenFirstGoal/v17/.futdcache.v2
+/.vs/ProjectEvaluation/greenfirstgoal.projects.v5.2
+/.vs/ProjectEvaluation/greenfirstgoal.metadata.v5.2
+/GreenFirstGoal/bin/Debug/net6.0/GreenFirstGoal.pdb
+/GreenFirstGoal/bin/Debug/net6.0/GreenFirstGoal.dll
+/bin/
+/GreenFirstGoal/obj/Debug/net6.0/ref/GreenFirstGoal.dll
+GreenFirstGoal/obj/Debug/net6.0/ref/
+GreenFirstGoal/obj/Debug/
+GreenFirstGoal/obj/Release
+/GreenFirstGoal/appsettings.json

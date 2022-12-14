@@ -58,6 +58,9 @@ namespace GreenFirstGoal.Controllers
 
             var gamesList = new List<FirstGoalViewModel>();
             var totalsList = new List<TotalGoalsViewModel>();
+            var Historylist = new List<HistoryViewModel>();
+
+            var history = GetGTLeagueHistory(selectedPlayers, 20);
 
             var last5 = GetLastGamesGTLeague(selectedPlayers, 5);
             var last5Totals = GetTotalGoalsGTLeague(selectedPlayers, 5);
@@ -68,13 +71,16 @@ namespace GreenFirstGoal.Controllers
             var last20 = GetLastGamesGTLeague(selectedPlayers, 20);
             var last20Totals = GetTotalGoalsGTLeague(selectedPlayers, 20);
 
+            GetGTLeagueHistory(selectedPlayers, 20);
+
             gamesList.Add(last5); gamesList.Add(last10); gamesList.Add(last15); gamesList.Add(last20);
             totalsList.Add(last5Totals); totalsList.Add(last10Totals); totalsList.Add(last15Totals); totalsList.Add(last20Totals);
 
             var testeModel = new FirstGoalBattleViewModel
             {
                 FirstGoalViewModel = gamesList,
-                TotalGoalsViewModel = totalsList
+                TotalGoalsViewModel = totalsList,
+                HistoryViewModel = history
             };
 
             var modelList = new List<FirstGoalBattleViewModel>();
@@ -192,7 +198,32 @@ namespace GreenFirstGoal.Controllers
             return viewModel;
         }
 
-        //private Firstgoal
+        private List<HistoryViewModel> GetGTLeagueHistory(List<string> playersList, int history)
+        {
+            var matchHistory = from match in _context.GtLeagueMatch
+                               where match.AwayPlayerName.Equals(playersList[0]) && match.HomePlayerName.Equals(playersList[1]) || match.HomePlayerName.Equals(playersList[0]) && match.AwayPlayerName.Equals(playersList[1])
+                               select match;
+
+            var lastGames = matchHistory.OrderByDescending(matchHistory => matchHistory.Date).ToList().Take(history).ToList();
+
+
+            var viewModelList = new List<HistoryViewModel>();
+            foreach (var game in lastGames)
+            {
+                var viewModel = new HistoryViewModel()
+                {
+                    GameDate = game.Date,
+                    TeamA = game.HomeTeamName,
+                    TeamB = game.AwayTeamName,
+                    PlayerA = game.HomePlayerName,
+                    PlayerB = game.AwayPlayerName,
+                    ScoreA = game.HomeScore,
+                    ScoreB = game.AwayScore
+                };
+                viewModelList.Add(viewModel);
+            }
+            return viewModelList;
+        }
 
 
     }

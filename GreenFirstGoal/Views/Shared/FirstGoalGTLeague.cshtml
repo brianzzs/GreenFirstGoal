@@ -1,7 +1,7 @@
 ﻿@model List<GreenFirstGoal.Models.FirstGoalBattleViewModel>
 
 @{
-    ViewData["Title"] = "GT League";
+    ViewData["Title"] = "Battle First GOal";
     var styleScore1 = "";
     var styleScore2 = "";
     var styleNoGoals = "brown";
@@ -15,6 +15,13 @@
     secondPlayerName = item.FirstGoalViewModel.FirstOrDefault().NameSecondPlayer;
 }
 <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+<!--Replace with your tailwind.css once created-->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+<!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+@*    <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=E6w3Eg9fWmTxjwfmywkthPs4DqQqCBVIyaFDtyGCBQnKYWweFoswnl5TxkTEPwYRydOg301m7vaHdxkTERZrL8xzzdGcJmRnl9emaA_ooUOd3D9uF8jKIPBJ6YzcH73PsLDKyI1zBIQN1CU8p6_t1A" charset="UTF-8"></script><style>
+      .gradient {
+        background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+      }*@
 <section class="bg-white border-b py-8">
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
@@ -28,7 +35,7 @@
                 <div class="text-gray-600 text-left bg-gray-100">
                     <h3 class="ml-28 py-4 text-xl text-cyan-900 text-center mx-auto">Primeiro Gol</h3>
                 </div>
-                <table class="table-fixed w-full text-gray-600 text-center">
+                <table class="table-fixed w-full text-gray-600 text-center table-striped">
                     <thead>
                         <tr>
                             <th></th>
@@ -65,10 +72,10 @@
                                 var player2 = @goals.FirstGoalAmountSecondPlayer;
                                 var total = player1 + player2 + noGoals;
                                 <tr>
-                                    <td class="p-2">Ultimos @total Jogos!</td>
+                                    <td class="p-2 text-center">Ultimos @total Jogos!</td>
                                     <td class="p-2" style="@styleScore1">@Html.DisplayFor(model => goals.FirstGoalAmountFirstPlayer)</td>
                                     <td class="p-2" style="@styleScore2">@Html.DisplayFor(model => goals.FirstGoalAmountSecondPlayer)</td>
-                                    <td class="p-2">@Html.DisplayFor(model => goals.NoGoals)</td>
+                                    <td class="p-2 text-center">@Html.DisplayFor(model => goals.NoGoals)</td>
                                 </tr>
                             }
                         }
@@ -81,7 +88,7 @@
                 <div class="text-gray-600 text-left bg-gray-100">
                     <h3 class="ml-28 py-4 text-xl text-cyan-900 text-center">Média de Gols</h3>
                 </div>
-                <table class="table-fixed w-full text-gray-600 text-center striped">
+                <table class="table-fixed w-full text-gray-600 text-center table-striped">
                     <thead>
                         <tr>
                             @*<th></th>*@
@@ -112,51 +119,36 @@
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                 <div class="text-gray-600 text-left bg-gray-100">
-                    <h3 class="ml-28 py-4 text-xl text-cyan-900">Histórico de Partidas</h3>
+                    <h3 class="ml-28 py-4 text-xl text-cyan-900 text-center">Histórico de Partidas</h3>
                 </div>
-                <table class="table-fixed w-full text-gray-600 text-center">
+                <table class="table-fixed w-full text-gray-600 text-center table-striped">
                     <thead>
                         <tr>
                             <th class="p-2 text-center">Data</th>
                             <th class="p-2 text-center">Player A</th>
-                            <th class="p-2 text-center">Team</th>
-                            <th class="p-2 text-center"></th>
-                            <th class="p-2 text-center">vs</th>
-                            <th class="p-2 text-center"></th>
+                            <th class="p-2 text-center">Team A</th>
+                            <th class="p-2 text-center">Score A</th>
+                            <th class="p-2 text-center">Score B</th>
+                            <th class="p-2 text-center">Team B</th>
                             <th class="p-2 text-center">Player B</th>
                         </tr>
                     </thead>
                     <tbody>
-@*                        @foreach (var item in Model)
+                        @foreach (var item in Model)
                         {
-                            @foreach (var totals in item.TotalGoalsViewModel)
+                            foreach (var history in item.HistoryViewModel)
                             {
                                 <tr>
-                                    <td class="p-2">22:22 22/02/2022</td>
-                                    <td class="p-2">Isabela</td>
-                                    <td class="p-2">igor</td>
-                                    <td class="p-2">2-2</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2">22:22 22/02/2022</td>
-                                    <td class="p-2">Gorilla</td>
-                                    <td class="p-2">Spex</td>
-                                    <td class="p-2">2-2</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2">22:22 22/02/2022</td>
-                                    <td class="p-2">Spex</td>
-                                    <td class="p-2">Gorilla</td>
-                                    <td class="p-2">2-2</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 pb-4">22:22 22/02/2022</td>
-                                    <td class="p-2 pb-4">Gorilla</td>
-                                    <td class="p-2 pb-4">Spex</td>
-                                    <td class="p-2 pb-4">2-2</td>
+                                    <td class="p-2 text-center">@history.GameDate</td>
+                                    <td class="p-2 text-center">@history.PlayerA</td>
+                                    <td class="p-2 text-center">@history.TeamA</td>
+                                    <td class="p-2 text-center">@history.ScoreA</td>
+                                    <td class="p-2 text-center">@history.ScoreB</td>
+                                    <td class="p-2 text-center">@history.TeamB</td>
+                                    <td class="p-2 text-center">@history.PlayerB</td>
                                 </tr>
                             }
-                        }*@
+                        }
                     </tbody>
                 </table>
             </div>
