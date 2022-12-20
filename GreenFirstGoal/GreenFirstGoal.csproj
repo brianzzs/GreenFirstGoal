@@ -19,6 +19,13 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+	<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
+	<UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
+	<UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
   </ItemGroup>
+
+  <Target Name="Tailwind" BeforeTargets="Build">
+	  <Exec Command="npm run css:build"/>
+  </Target>
 
 </Project>

@@ -5,71 +5,161 @@
     ViewData["Title"] = "Home";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            @*            <th>
-            @Html.DisplayNameFor(model => model.Date)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.HomePlayerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeamName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeScore)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayScore)
-            </th>
+<div class="pt-16 mt-2">
+</div>
 
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeamName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayPlayerName)
-            </th>
-            @*            <th>
-            @Html.DisplayNameFor(model => model.TotalGoals)
-            </th>*@
-            @*            <th></th>*@
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-            @Html.DisplayFor(modelItem => item.Date)
-            </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomePlayerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeTeamName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayTeamName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayPlayerName)
-                </td>
-                @*            <td>
-            @Html.DisplayFor(modelItem => item.TotalGoals)
-            </td>*@
-                @*            <td>
-            <a asp-action="Edit" asp-route-id="@item.GameID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.GameID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.GameID">Delete</a>
-            </td>*@
-            </tr>
-        }
-    </tbody>
-</table>
+<section class="bg-gray-800 py-8">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+        <h2 class="w-full my-4 text-5xl font-bold leading-tight text-center">
+            Alguma coisa Bet
+        </h2>
+        <div class="w-full mb-24">
+            <div class="h-1 mx-auto bg-gradient-to-r from-violet-500 to-fuchsia-500 w-80 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+            <div class="flex-auto rounded-t rounded-b-none overflow-hidden shadow">
+                <div class="text-gray-600 text-center">
+                    <h3 class="py-4 text-4xl text-gray-50">Confrontos</h3>
+                </div>
+                <div class="border border-gray-500 rounded-lg p-2 bg-gray-700 text-gray-50">
+                    <form>
+                        <div class="p-5">
+                            <label class="block mb-2 text-lg text-center font-medium dark:text-white">Campeonato</label>
+                            <select id="Select-Camp" placeholder="Escolha" class="block w-full p-2 mb-4 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Escolha</option>
+                                <option>Placeholder</option>
+                                <option>Placeholder2</option>
+                                <option>Placeholder3</option>
+                                <option>Placeholder4</option>
+                                <option>Placeholder5</option>
+                                <option>Placeholder6</option>
+                                <option>Placeholder7</option>
+                                <option>Placeholder8</option>
+                                <option>Placeholder9</option>
+                                <option>Placeholdera</option>
+                                <option>Placeholderb</option>
+                                <option>Placeholderc</option>
+                                <option>Placeholdebb</option>
+                                <option>Placeholderf</option>
+                                <option>Placeholderg</option>
+                                <option>Placeholderh</option>
+                                <option>Placeholderj</option>
+                                <option>Placeholderk</option>
+                                <option>Placeholderl</option>
+                                <option>Placeholder4q</option>
+                            </select>
+                            <label class="block mb-2 text-lg text-center font-medium dark:text-white">Player1</label>
+                            <select id="Select-Player1" placeholder="Escolha" class="block w-full p-2 mb-4 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Escolha</option>
+                                <option>Placeholder2</option>
+                                <option>Placeholder3</option>
+                                <option>Placeholder4</option>
+                                <option>Placeholder5</option>
+                            </select>
+                            <label class="block mb-2 text-lg text-center font-medium dark:text-white">Player2</label>
+                            <select id="Select-Player2" placeholder="Escolha" class="block w-full p-2 mb-4 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">Escolha</option>
+                                <option>Placeholder2</option>
+                                <option>Placeholder3</option>
+                                <option>Placeholder4</option>
+                                <option>Placeholder5</option>
+                            </select>
+                        </div>
+                        <div class="flex">
+                            <button type="submit" class="mx-auto mb-4 bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:underline text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+            <div class="flex-1 rounded-t rounded-b-none overflow-hidden shadow ">
+                <div class="text-gray-600 text-center">
+                    <h3 class="py-4 text-4xl text-gray-50">Histórico de Partidas</h3>
+                </div>
+                <div class="border border-gray-500 rounded-lg p-2">
+                    <div class="max-h-[28rem] overflow-auto rounded-lg">
+                        <table class="table-fixed w-full text-center overflow-auto ">
+                            <thead class="bg-gray-700 text-gray-400">
+                                <tr>
+                                    @*            <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                    </th>*@
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.HomePlayerName)
+                                    </th>
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.HomeTeamName)
+                                    </th>
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.HomeScore)
+                                    </th>
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.AwayScore)
+                                    </th>
+
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.AwayTeamName)
+                                    </th>
+                                    <th class="p-2 pt-4">
+                                        @Html.DisplayNameFor(model => model.AwayPlayerName)
+                                    </th>
+                                    @*            <th>
+                                    @Html.DisplayNameFor(model => model.TotalGoals)
+                                    </th>*@
+                                    @*            <th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-200">
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="bg-gray-900">
+                                        @*<td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                    </td>*@
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.HomePlayerName)
+                                        </td>
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.HomeTeamName)
+                                        </td>
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.HomeScore)
+                                        </td>
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.AwayScore)
+                                        </td>
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.AwayTeamName)
+                                        </td>
+                                        <td class="p-2">
+                                            @Html.DisplayFor(modelItem => item.AwayPlayerName)
+                                        </td>
+                                        @*            <td>
+                                    @Html.DisplayFor(modelItem => item.TotalGoals)
+                                    </td>*@
+                                        @*            <td>
+                                    <a asp-action="Edit" asp-route-id="@item.GameID">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.GameID">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.GameID">Delete</a>
+                                    </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('#Select-Camp').selectize();
+</script>
+<script>
+    $('#Select-Player1').selectize();
+</script>
+<script>
+    $('#Select-Player2').selectize();
+</script>
