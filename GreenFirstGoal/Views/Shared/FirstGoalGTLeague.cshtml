@@ -7,12 +7,18 @@
     var styleNoGoals = "brown";
     var firstPlayerName = "";
     var secondPlayerName = "";
+    var player1WinsCount = 0;
+    var player2WinsCount = 0;
+    var drawsCount = 0;
 }
 
 @foreach (var item in Model)
 {
     firstPlayerName = item.FirstGoalViewModel.FirstOrDefault().NameFirstPlayer;
     secondPlayerName = item.FirstGoalViewModel.FirstOrDefault().NameSecondPlayer;
+    player1WinsCount = item.WinsViewModel.FirstOrDefault().AmountWinsPlayerA;
+    player2WinsCount = item.WinsViewModel.FirstOrDefault().AmountWinsPlayerB;
+    drawsCount = item.WinsViewModel.FirstOrDefault().AmountDraws;
 }
 
 <div class="pt-16 mt-2">
@@ -22,6 +28,21 @@
         <h2 class="w-full my-4 text-5xl font-bold leading-tight text-center">
             @firstPlayerName vs @secondPlayerName
         </h2>
+        <div class="container mx-auto flex flex-wrap justify-center pt-4 pb-12">
+            <div class="w-1/4 p-6 rounded-lg bg-slate-600 shadow-md text-center text-white">
+                <h2 class="text-lg font-medium">@firstPlayerName</h2>
+                <p class="text-sm">@player1WinsCount</p>
+            </div>
+            <div class="w-1/4 p-6 rounded-lg bg-slate-600 shadow-md text-center text-white">
+                <h2 class="text-lg font-medium">Empate</h2>
+                <p class="text-sm">@drawsCount</p>
+            </div>
+            <div class="w-1/4 p-6 rounded-lg bg-slate-600 shadow-md text-center text-white">
+                <h2 class="text-lg font-medium">@secondPlayerName</h2>
+                <p class="text-sm">@player2WinsCount</p>
+            </div>
+        </div>
+
         <div class="w-full mb-24">
             <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
@@ -35,21 +56,21 @@
                         <table class="table-fixed w-full text-center">
                             <thead class="bg-gray-700">
                                 <tr>
-                                    <th class="h-12"></th> 
+                                    <th class="h-12"></th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-200">
                                 <tr class="bg-gray-900">
-                                  <td class="p-2 h-16">Últimas 5</td>
+                                    <td class="p-2 h-16">Últimas 5</td>
                                 </tr>
                                 <tr class="bg-gray-700">
-                                  <td class="p-2 h-16">Últimas 10</td>
+                                    <td class="p-2 h-16">Últimas 10</td>
                                 </tr>
                                 <tr class="bg-gray-900">
-                                  <td class="p-2 h-16">Últimas 15</td>
+                                    <td class="p-2 h-16">Últimas 15</td>
                                 </tr>
                                 <tr class="bg-gray-700">
-                                  <td class="p-2 h-16">Últimas 20</td>
+                                    <td class="p-2 h-16">Últimas 20</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -134,13 +155,12 @@
                     </div>
                     <div class="col-span-3 overflow-auto rounded-r-lg">
                         <table class="table-fixed w-full text-center">
-                             <thead class="bg-gray-700 text-gray-400">
+                            <thead class="bg-gray-700 text-gray-400">
                                 <tr>
-                                    @*<th></th>*@
                                     <th class="p-2 pt-4">@firstPlayerName</th>
                                     <th class="p-2 pt-4">@secondPlayerName</th>
                                     <th class="p-2 pt-4">Total</th>
-                               </tr>
+                                </tr>
                             </thead>
                             <tbody class="text-gray-200">
                                 @foreach (var item in Model)
@@ -148,7 +168,6 @@
                                     @foreach (var totals in item.TotalGoalsViewModel)
                                     {
                                         <tr class="bg-gray-900">
-                                            @*<td class="p-2 text-center"></td>*@
                                             <td class="p-2 h-16">@totals.FirstPlayerGoalsAmount</td>
                                             <td class="p-2 h-16">@totals.SecondPlayerGoalsAmount</td>
                                             <td class="p-2 h-16">@totals.MatchTotalGoals</td>
@@ -157,8 +176,8 @@
                                 }
                             </tbody>
                         </table>
-                     </div>
-                 </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -166,7 +185,7 @@
         <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div class="flex-1 rounded-t rounded-b-none overflow-hidden shadow ">
                 <div class="text-gray-600 text-center">
-                    <h3 class="py-4 text-4xl text-gray-50">Histórico de Partidas</h3>
+                    <h3 class="py-4 text-4xl text-gray-50">Histórico - 20 Partidas</h3>
                 </div>
                 <div class="border border-gray-500 rounded-lg p-2 lg:block hidden ">
                     <div class="max-h-96 overflow-auto rounded-lg">
@@ -174,12 +193,12 @@
                             <thead class="bg-gray-700 text-gray-400">
                                 <tr>
                                     <th class="p-2 pt-4">Data</th>
-                                    <th class="p-2 pt-4">Player A</th>
-                                    <th class="p-2 pt-4">Team A</th>
-                                    <th class="p-2 pt-4">Score A</th>
-                                    <th class="p-2 pt-4">Score B</th>
-                                    <th class="p-2 pt-4">Team B</th>
-                                    <th class="p-2 pt-4">PlayerB</th>
+                                    <th class="p-2 pt-4">Time Casa</th>
+                                    <th class="p-2 pt-4">Jogador Casa</th>
+                                    <th class="p-2 pt-4">Casa</th>
+                                    <th class="p-2 pt-4">Visitante</th>
+                                    <th class="p-2 pt-4">Jogador Visitante</th>
+                                    <th class="p-2 pt-4">Time Visitante</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-200">
@@ -189,12 +208,12 @@
                                     {
                                         <tr class="bg-gray-900">
                                             <td class="p-2">@history.GameDate</td>
-                                            <td class="p-2">@history.PlayerA</td>
                                             <td class="p-2">@history.TeamA</td>
+                                            <td class="p-2">@history.PlayerA</td>
                                             <td class="p-2">@history.ScoreA</td>
                                             <td class="p-2">@history.ScoreB</td>
-                                            <td class="p-2">@history.TeamB</td>
                                             <td class="p-2">@history.PlayerB</td>
+                                            <td class="p-2">@history.TeamB</td>
                                         </tr>
                                     }
                                 }
@@ -208,9 +227,10 @@
                             <thead class="bg-gray-700 text-gray-400">
                                 <tr>
                                     <th class="p-2 pt-4">Data</th>
-                                    <th class="p-2 pt-4">Player1</th>
+                                    <th class="p-2 pt-4">Jogador Casa</th>
                                     <th class="p-2 pt-4">Resultado</th>
-                                    <th class="p-2 pt-4">Player2</th>
+                                    <th class="p-2 pt-4">Jogador Visitante
+                                    <th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-200">

@@ -1,7 +1,4 @@
-﻿
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,23 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GreenFirstGoal.styles.css" asp-append-version="true" />*@
-    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
-    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
-
-
 
 
     
 </head>
 <body class="leading-normal tracking-normal text-white bg-gray-800" style="font-family: 'Source Sans Pro', sans-serif;">
     <header>
-        <nav id="header" class="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-violet-500 to-fuchsia-500">
+        <nav id="header" class="fixed w-full z-30 top-0 text-white bg-emerald-600 shadow-md">
             <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 pt-2 lg:py-2">
                 <div class="block lg:hidden px-4">
                     <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -50,9 +37,9 @@
                             <a class="inline-block py-2 px-4 text-white font-bold no-underline" asp-area="" asp-controller="FirstGoalGTLeague" asp-action="FirstGoalSelectGTLeague">GT League</a>
                         </li>
                     </ul>
-                    <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-yellow-700 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+@*                    <button id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-yellow-700 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                         Inscrição
-                    </button>
+                    </button>*@
                 </div>
             </div>
         </nav>
@@ -63,13 +50,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-    </footer>
-    <@*script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>*@
-
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

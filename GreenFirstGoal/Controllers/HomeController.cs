@@ -19,7 +19,7 @@ namespace GreenFirstGoal.Controllers
 
         public IActionResult Index()
         {
-            var matchInfo = _context.Match.FromSqlRaw("select * from firstgoal.match order by Date desc limit 20");
+            var matchInfo = _context.GtLeagueMatch.FromSqlRaw("select * from firstgoal.gtleaguematch order by Date desc limit 30");
             return View(matchInfo);
         }
 

@@ -48,7 +48,7 @@ namespace GreenFirstGoal.Controllers
             var gamesList = new List<FirstGoalViewModel>();
             var totalsList = new List<TotalGoalsViewModel>();
             var Historylist = new List<HistoryViewModel>();
-
+            var resultList = GetTotalWins(selectedPlayers, 20);
 
             var last5 = GetLastGamesBattle(selectedPlayers, 5);
             var last5Totals = GetTotalGoalsBattle(selectedPlayers, 5);
@@ -71,7 +71,8 @@ namespace GreenFirstGoal.Controllers
             {
                 FirstGoalViewModel = gamesList,
                 TotalGoalsViewModel = totalsList,
-                HistoryViewModel = Historylist
+                HistoryViewModel = Historylist,
+                WinsViewModel = resultList
             };
 
             var modelList = new List<FirstGoalBattleViewModel>
@@ -177,7 +178,6 @@ namespace GreenFirstGoal.Controllers
 
             var noGoals = lastGames.Where(e => e.TotalGoals == 0).Count();
 
-            var perc = (noGoals * 100) / history;
 
             try
             {
@@ -188,7 +188,7 @@ namespace GreenFirstGoal.Controllers
                     FirstPlayerGoalsAmount = Math.Round(totalGoalsPlayer1.Average(), 2),
                     SecondPlayerGoalsAmount = Math.Round(totalGoalsPlayer2.Average(), 2),
                     MatchTotalGoals = Math.Round(matchTotalGoals.Average(), 2),
-                    NoGoals = perc
+                    NoGoals = noGoals
                 };
                 return viewModel;
             }
@@ -201,7 +201,7 @@ namespace GreenFirstGoal.Controllers
                     FirstPlayerGoalsAmount = totalGoalsPlayer1.Sum(),
                     SecondPlayerGoalsAmount = totalGoalsPlayer1.Sum(),
                     MatchTotalGoals = matchTotalGoals.Sum(),
-                    NoGoals = perc
+                    NoGoals = noGoals
                 };
                 return viewModel;
             }
@@ -234,5 +234,78 @@ namespace GreenFirstGoal.Controllers
             return viewModelList;
         }
 
+        private List<WinsViewModel> GetTotalWins(List<string> playersList, int history)
+        {
+
+            var player1WinsCount = 0;
+
+            var player2WinsCount = 0;
+
+            var drawCount = 0;
+
+            var matchHistory = from match in _context.Match
+                               where match.AwayPlayerName.Equals(playersList[0]) && match.HomePlayerName.Equals(playersList[1]) || match.HomePlayerName.Equals(playersList[0]) && match.AwayPlayerName.Equals(playersList[1])
+                               select match;
+
+            var lastGames = matchHistory.OrderByDescending(matchHistory => matchHistory.Date).ToList().Take(history).ToList();
+
+            var player1Home = lastGames.Where(e => e.HomePlayerName == playersList[0]).ToList();
+            var player1Away = lastGames.Where(e => e.AwayPlayerName == playersList[0]).ToList();
+
+
+            var player2Home = lastGames.Where(e => e.HomePlayerName == playersList[1]).ToList();
+            var player2Away = lastGames.Where(e => e.AwayPlayerName == playersList[1]).ToList();
+
+
+            foreach (var game in player1Home)
+            {
+                if (game.HomeScore > game.AwayScore && game.HomeScore != game.AwayScore)
+                {
+                    player1WinsCount++;
+                }
+            }
+
+            foreach (var game in player1Away)
+            {
+                if (game.AwayScore > game.HomeScore && game.HomeScore != game.AwayScore)
+                {
+                    player1WinsCount++;
+                }
+                if (game.AwayScore == game.HomeScore)
+                {
+                    drawCount++;
+                }
+            }
+
+            foreach (var game in player2Home)
+            {
+                if (game.HomeScore > game.AwayScore && game.HomeScore != game.AwayScore)
+                {
+                    player2WinsCount++;
+                }
+            }
+
+            foreach (var game in player2Away)
+            {
+                if (game.AwayScore > game.HomeScore && game.HomeScore != game.AwayScore)
+                {
+                    player2WinsCount++;
+                }
+                if (game.AwayScore == game.HomeScore)
+                {
+                    drawCount++;
+                }
+            }
+            var listResults = new List<WinsViewModel>();
+            var winsViewModel = new WinsViewModel()
+            {
+                AmountWinsPlayerA = player1WinsCount,
+                AmountWinsPlayerB = player2WinsCount,
+                AmountDraws = drawCount,
+            };
+            listResults.Add(winsViewModel);
+
+            return listResults;
+        }
     }
 }
