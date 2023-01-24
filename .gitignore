@@ -25,3 +25,14 @@ GreenFirstGoal/obj/Debug/net6.0/ref/
 GreenFirstGoal/obj/Debug/
 GreenFirstGoal/obj/Release
 /GreenFirstGoal/appsettings.json
+/GreenFirstGoal/.config
+/.vs
+/node_modules
+/GreenFirstGoal/obj
+/GreenFirstGoal/Properties
+/GreenFirstGoal/.config
+/.vs/
+./node_modules/
+./GreenFirstGoal/obj/
+./GreenFirstGoal/Properties/
+./GreenFirstGoal/.config/
