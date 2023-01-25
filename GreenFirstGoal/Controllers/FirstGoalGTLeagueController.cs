@@ -3,6 +3,8 @@ using GreenFirstGoal.Models;
 using GreenFirstGoal.Models.GTLeague;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 
@@ -99,51 +101,43 @@ namespace GreenFirstGoal.Controllers
 
         private TotalGoalsViewModel GetTotalGoalsGTLeague(List<string> playersList, int history)
         {
-            var matchFromDB = from match in _context.GtLeagueMatch
-                              join goals in _context.GtLeagueGoals on match.GameID equals goals.GameID
-                              where match.HomePlayerName == playersList[0] && match.AwayPlayerName == playersList[1] || match.AwayPlayerName == playersList[0] && match.HomePlayerName == playersList[1]
-                              select match;
-
+            var matchFromDB = _context.GtLeagueMatch.FromSqlInterpolated(@$"select * from firstgoal.gtleaguematch where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
             var totalGoalsPlayer1 = new List<int>();
             var totalGoalsPlayer2 = new List<int>();
             var matchTotalGoals = new List<int>();
 
-
-            var lastGames = matchFromDB.OrderByDescending(match => match.Date).ToList().Take(history).ToList();
-
-            var goalsPlayer1Home = lastGames.Where(e => e.HomePlayerName.Equals(playersList[0], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.HomeScore);
+            var goalsPlayer1Home = matchFromDB.Where(e => e.HomePlayerName.Equals(playersList[0], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.HomeScore);
             foreach (var goal in goalsPlayer1Home)
             {
                 totalGoalsPlayer1.Add(goal);
             }
-            var goalsPlayer1Away = lastGames.Where(e => e.AwayPlayerName.Equals(playersList[0], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.AwayScore);
+            var goalsPlayer1Away = matchFromDB.Where(e => e.AwayPlayerName.Equals(playersList[0], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.AwayScore);
             foreach (var goal in goalsPlayer1Away)
             {
                 totalGoalsPlayer1.Add(goal);
             }
 
-            var goalsPlayer2Home = lastGames.Where(e => e.HomePlayerName.Equals(playersList[1], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.HomeScore);
+            var goalsPlayer2Home = matchFromDB.Where(e => e.HomePlayerName.Equals(playersList[1], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.HomeScore);
             foreach (var goal in goalsPlayer2Home)
             {
                 totalGoalsPlayer2.Add(goal);
             }
 
-            var goalsPlayer2Away = lastGames.Where(e => e.AwayPlayerName.Equals(playersList[1], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.AwayScore);
+            var goalsPlayer2Away = matchFromDB.Where(e => e.AwayPlayerName.Equals(playersList[1], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.AwayScore);
             foreach (var goal in goalsPlayer2Away)
             {
                 totalGoalsPlayer2.Add(goal);
             }
 
-            var matchGoals = lastGames.Select(e => e.TotalGoals);
+            var matchGoals = matchFromDB.Select(e => e.TotalGoals);
             foreach (var goals in matchGoals)
             {
                 matchTotalGoals.Add(goals);
             }
 
 
-            var noGoals = lastGames.Where(e => e.TotalGoals == 0).Count();
-
-
+            var noGoals = matchFromDB.Where(e => e.TotalGoals == 0).Count();
+            var perc = (noGoals * 100) / history;
             try
             {
                 var viewModel = new TotalGoalsViewModel()
@@ -153,7 +147,7 @@ namespace GreenFirstGoal.Controllers
                     FirstPlayerGoalsAmount = Math.Round(totalGoalsPlayer1.Average(), 2),
                     SecondPlayerGoalsAmount = Math.Round(totalGoalsPlayer2.Average(), 2),
                     MatchTotalGoals = Math.Round(matchTotalGoals.Average(), 2),
-                    NoGoals = noGoals
+                    NoGoals = perc
                 };
                 return viewModel;
             }
@@ -166,57 +160,38 @@ namespace GreenFirstGoal.Controllers
                     FirstPlayerGoalsAmount = totalGoalsPlayer1.Sum(),
                     SecondPlayerGoalsAmount = totalGoalsPlayer1.Sum(),
                     MatchTotalGoals = matchTotalGoals.Sum(),
-                    NoGoals = noGoals
+                    NoGoals = perc
                 };
                 return viewModel;
             }
-
         }
 
         private FirstGoalViewModel GetLastGamesGTLeague(List<string> playersList, int history)
         {
-            var firstGoalsFromDB = from match in _context.GtLeagueMatch
-                                   join goals in _context.GtLeagueGoals on match.GameID equals goals.GameID
-                                   where
-                                   goals.TotalGoals > 0 && goals.FirstGoal != "N"
-                                   && match.HomePlayerName == playersList[0] && match.AwayPlayerName == playersList[1] || goals.TotalGoals > 0 && goals.FirstGoal != "N" && match.AwayPlayerName == playersList[0] && match.HomePlayerName == playersList[1]
-                                   select goals;
+            var firstGoalsFromDB = _context.GtLeagueGoals.FromSqlInterpolated(@$"SELECT * FROM firstgoal.gtleaguematch m INNER JOIN firstgoal.gtleaguegoals g ON m.gameID = g.GoalsGameID WHERE m.HomePlayerName = '{playersList[0]}' AND m.AwayPlayerName = {playersList[1]} AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) OR m.HomePlayerName = {playersList[1]} AND m.AwayPlayerName = {playersList[0]} AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) ORDER BY m.Date desc LIMIT {history}").ToList();
 
-            var matchFromDB = from match in _context.GtLeagueMatch
-                              join goals in _context.GtLeagueGoals on match.GameID equals goals.GameID
-                              where match.HomePlayerName == playersList[0] && match.AwayPlayerName == playersList[1] || match.AwayPlayerName == playersList[0] && match.HomePlayerName == playersList[1]
-                              select match;
+            var goalsPlayer1 = firstGoalsFromDB.Where(e => e.FirstGoal == playersList[0]).ToList();
+            var goalsPlayer2 = firstGoalsFromDB.Where(e => e.FirstGoal == playersList[1]).ToList();
+            var noGoals = firstGoalsFromDB.Where(e => e.FirstGoal == "N" || e.GoalsTotalGoals == 0).ToList();
 
-            var lastGames = firstGoalsFromDB.OrderByDescending(match => match.GameDate).ToList().Take(history).ToList();
-
-            var goalsPlayer1 = lastGames.Where(e => e.FirstGoal == playersList[0]).ToList();
-            var goalsPlayer2 = lastGames.Where(e => e.FirstGoal == playersList[1]).ToList();
-            var noGoals = lastGames.Where(e => e.FirstGoal == "N" && e.TotalGoals > 0).ToList();
             var viewModel = new FirstGoalViewModel();
             {
                 viewModel.NameFirstPlayer = playersList[0];
                 viewModel.NameSecondPlayer = playersList[1];
                 viewModel.FirstGoalAmountFirstPlayer = goalsPlayer1.Count();
                 viewModel.FirstGoalAmountSecondPlayer = goalsPlayer2.Count();
-                if (noGoals == null || noGoals.Count() == 0)
-                    viewModel.NoGoals = 0;
-                else
-                    viewModel.NoGoals = noGoals.Count();
+                viewModel.NoGoals = noGoals.Count();
             }
             return viewModel;
         }
 
         private List<HistoryViewModel> GetGTLeagueHistory(List<string> playersList, int history)
         {
-            var matchHistory = from match in _context.GtLeagueMatch
-                               where match.AwayPlayerName.Equals(playersList[0]) && match.HomePlayerName.Equals(playersList[1]) || match.HomePlayerName.Equals(playersList[0]) && match.AwayPlayerName.Equals(playersList[1])
-                               select match;
-
-            var lastGames = matchHistory.OrderByDescending(matchHistory => matchHistory.Date).ToList().Take(history).ToList();
-
+            var matchHistory = _context.GtLeagueMatch.FromSqlInterpolated(@$"select * from firstgoal.gtleaguematch where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
 
             var viewModelList = new List<HistoryViewModel>();
-            foreach (var game in lastGames)
+
+            foreach (var game in matchHistory)
             {
                 var viewModel = new HistoryViewModel()
                 {
@@ -235,32 +210,27 @@ namespace GreenFirstGoal.Controllers
 
         private List<WinsViewModel> GetTotalWins(List<string> playersList, int history)
         {
-
             var player1WinsCount = 0;
-
             var player2WinsCount = 0;
-
             var drawCount = 0;
+            var matchHistory = _context.GtLeagueMatch.FromSqlInterpolated(@$"select * from firstgoal.gtleaguematch where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
 
-            var matchHistory = from match in _context.GtLeagueMatch
-                               where match.AwayPlayerName.Equals(playersList[0]) && match.HomePlayerName.Equals(playersList[1]) || match.HomePlayerName.Equals(playersList[0]) && match.AwayPlayerName.Equals(playersList[1])
-                               select match;
-
-            var lastGames = matchHistory.OrderByDescending(matchHistory => matchHistory.Date).ToList().Take(history).ToList();
-
-            var player1Home = lastGames.Where(e => e.HomePlayerName == playersList[0]).ToList();
-            var player1Away = lastGames.Where(e => e.AwayPlayerName == playersList[0]).ToList();
-
-
-            var player2Home = lastGames.Where(e => e.HomePlayerName == playersList[1]).ToList();
-            var player2Away = lastGames.Where(e => e.AwayPlayerName == playersList[1]).ToList();
-
+            var player1Home = matchHistory.Where(e => e.HomePlayerName == playersList[0]).ToList();
+            var player1Away = matchHistory.Where(e => e.AwayPlayerName == playersList[0]).ToList();
 
             foreach (var game in player1Home)
             {
                 if (game.HomeScore > game.AwayScore && game.HomeScore != game.AwayScore)
                 {
                     player1WinsCount++;
+                }
+                else if (game.HomeScore < game.AwayScore && game.HomeScore != game.AwayScore)
+                {
+                    player2WinsCount++;
+                }
+                else
+                {
+                    drawCount++;
                 }
             }
 
@@ -270,31 +240,16 @@ namespace GreenFirstGoal.Controllers
                 {
                     player1WinsCount++;
                 }
-                if (game.AwayScore == game.HomeScore)
+                else if (game.AwayScore == game.HomeScore)
                 {
                     drawCount++;
                 }
-            }
-
-            foreach (var game in player2Home)
-            {
-                if (game.HomeScore > game.AwayScore && game.HomeScore != game.AwayScore)
+                else
                 {
                     player2WinsCount++;
                 }
             }
 
-            foreach (var game in player2Away)
-            {
-                if (game.AwayScore > game.HomeScore && game.HomeScore != game.AwayScore)
-                {
-                    player2WinsCount++;
-                }
-                if (game.AwayScore == game.HomeScore)
-                {
-                    drawCount++;
-                }
-            }
             var listResults = new List<WinsViewModel>();
             var winsViewModel = new WinsViewModel()
             {
