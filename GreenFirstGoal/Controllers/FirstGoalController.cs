@@ -102,7 +102,8 @@ namespace GreenFirstGoal.Controllers
 
         private FirstGoalViewModel GetLastGamesBattle(List<string> playersList, int history)
         {
-            var firstGoalsFromDB = _context.Goals.FromSqlInterpolated(@$"SELECT * FROM firstgoal.match m INNER JOIN firstgoal.goals g ON m.gameID = g.GoalsGameID WHERE m.HomePlayerName = '{playersList[0]}' AND m.AwayPlayerName = {playersList[1]} AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) OR m.HomePlayerName = {playersList[1]} AND m.AwayPlayerName = {playersList[0]} AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) ORDER BY m.Date desc LIMIT {history}").ToList();
+            var query = @$"SELECT * FROM firstgoal.match m INNER JOIN firstgoal.goals g ON m.gameID = g.GoalsGameID WHERE m.HomePlayerName = '{playersList[0]}' AND m.AwayPlayerName = '{playersList[1]}' AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) OR m.HomePlayerName = '{playersList[1]}' AND m.AwayPlayerName = '{playersList[0]}' AND (CASE WHEN g.Firstgoal = 'N' THEN g.GoalsTotalGoals = 0  ELSE TRUE END) ORDER BY m.Date desc LIMIT {history}";
+            var firstGoalsFromDB = _context.Goals.FromSqlRaw(query).ToList();
 
             var goalsPlayer1 = firstGoalsFromDB.Where(e => e.FirstGoal == playersList[0]).ToList();
             var goalsPlayer2 = firstGoalsFromDB.Where(e => e.FirstGoal == playersList[1]).ToList();
@@ -121,7 +122,8 @@ namespace GreenFirstGoal.Controllers
 
         private TotalGoalsViewModel GetTotalGoalsBattle(List<string> playersList, int history)
         {
-            var matchFromDB = _context.Match.FromSqlInterpolated(@$"select * from firstgoal.match where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
+            var query = @$"select * from firstgoal.match where HomePlayerName = '{playersList[0]}' AND AwayPlayerName = '{playersList[1]}' OR HomePlayerName = '{playersList[1]}' AND AwayPlayerName = '{playersList[0]}' ORDER BY Date DESC LIMIT {history}";
+            var matchFromDB = _context.Match.FromSqlRaw(query).ToList();
             var totalGoalsPlayer1 = new List<int>();
             var totalGoalsPlayer2 = new List<int>();
             var matchTotalGoals = new List<int>();
@@ -141,7 +143,7 @@ namespace GreenFirstGoal.Controllers
             foreach (var goal in goalsPlayer2Home)
             {
                 totalGoalsPlayer2.Add(goal);
-            }   
+            }
 
             var goalsPlayer2Away = matchFromDB.Where(e => e.AwayPlayerName.Equals(playersList[1], StringComparison.OrdinalIgnoreCase)).ToList().Select(e => e.AwayScore);
             foreach (var goal in goalsPlayer2Away)
@@ -188,7 +190,8 @@ namespace GreenFirstGoal.Controllers
 
         private List<HistoryViewModel> GetBattleHistory(List<string> playersList, int history)
         {
-            var matchHistory = _context.Match.FromSqlInterpolated(@$"select * from firstgoal.match where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
+            var query = @$"select * from firstgoal.match where HomePlayerName = '{playersList[0]}' AND AwayPlayerName = '{playersList[1]}' OR HomePlayerName = '{playersList[1]}' AND AwayPlayerName = '{playersList[0]}' ORDER BY Date DESC LIMIT {history}";
+            var matchHistory = _context.Match.FromSqlRaw(query).ToList();
 
             var viewModelList = new List<HistoryViewModel>();
 
@@ -211,10 +214,11 @@ namespace GreenFirstGoal.Controllers
 
         private List<WinsViewModel> GetTotalWins(List<string> playersList, int history)
         {
+            var query = @$"select * from firstgoal.match where HomePlayerName = '{playersList[0]}' AND AwayPlayerName = '{playersList[1]}' OR HomePlayerName = '{playersList[1]}' AND AwayPlayerName = '{playersList[0]}' ORDER BY Date DESC LIMIT {history}";
             var player1WinsCount = 0;
             var player2WinsCount = 0;
             var drawCount = 0;
-            var matchHistory = _context.Match.FromSqlInterpolated(@$"select * from firstgoal.match where HomePlayerName = {playersList[0]} AND AwayPlayerName = {playersList[1]} OR HomePlayerName = {playersList[1]} AND AwayPlayerName = {playersList[0]} ORDER BY Date DESC LIMIT {history}").ToList();
+            var matchHistory = _context.Match.FromSqlRaw(query).ToList();
 
             var player1Home = matchHistory.Where(e => e.HomePlayerName == playersList[0]).ToList();
             var player1Away = matchHistory.Where(e => e.AwayPlayerName == playersList[0]).ToList();

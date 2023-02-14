@@ -542,3 +542,5 @@ C:\Users\Enrique\GreenFirstGoal\GreenFirstGoal\obj\Debug\net6.0\GreenFirstGoal.g
 C:\Users\Enrique\GreenFirstGoal\GreenFirstGoal\obj\Debug\net6.0\ref\GreenFirstGoal.dll
 C:\Users\Enrique\GreenFirstGoal\GreenFirstGoal\bin\Debug\net6.0\package-lock.json
 C:\Users\Enrique\GreenFirstGoal\GreenFirstGoal\bin\Debug\net6.0\package.json
+C:\Users\brian\source\repos\GreenFirstGoal\GreenFirstGoal\bin\Debug\net6.0\package-lock.json
+C:\Users\brian\source\repos\GreenFirstGoal\GreenFirstGoal\bin\Debug\net6.0\package.json
