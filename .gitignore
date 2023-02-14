@@ -36,3 +36,12 @@ GreenFirstGoal/obj/Release
 ./GreenFirstGoal/obj/
 ./GreenFirstGoal/Properties/
 ./GreenFirstGoal/.config/
+/GreenFirstGoal/appsettings.json
+/GreenFirstGoal/bin/Debug/net6.0/appsettings.json
+/GreenFirstGoal/bin/Release/net6.0/package.json
+/GreenFirstGoal/bin/Release/net6.0/package-lock.json
+/GreenFirstGoal/bin/Release/net6.0/GreenFirstGoal.staticwebassets.runtime.json
+/GreenFirstGoal/bin/Release/net6.0/GreenFirstGoal.pdb
+/GreenFirstGoal/bin/Release/net6.0/GreenFirstGoal.dll
+/GreenFirstGoal/bin/Debug/net6.0/GreenFirstGoal.staticwebassets.runtime.json
+/GreenFirstGoal/GreenFirstGoal.csproj.user
